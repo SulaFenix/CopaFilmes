@@ -1,0 +1,113 @@
+﻿@model  IList<CopaFilmes.Web.Models.FilmeViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    function chk_Filme_OnClick() {
+        var chkSelecionados = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (chkSelecionados > 8) {
+            alert("Selecione somente 8 filmes.")
+        }
+        document.getElementById('contSelecionados').innerHTML = chkSelecionados;
+    }
+</script>
+
+@using (Html.BeginForm("Resultado", "Filme"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="text-left">
+                    <h5 style="color:white">Selecionados</h5>
+                </div>
+                <div>
+                    <h5 style="color:white"><label id='contSelecionados'>0</label>&nbsp<label>de 8 </label></h5>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="text-right">
+                    <input type="submit" value="GERAR MEU CAMPEONATO" class="btn pull-right" style="background-color:#363636; color:white" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model != null && Model.Count() > 0)
+            {
+                for (var i = 0; i < Model.Count; i++)
+                {
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div style="background-color:white;" }>
+                                    @Html.CheckBoxFor(x => x[i].Checked, new { @onclick = "chk_Filme_OnClick();" })
+                                    <b>@Html.DisplayFor(x => x[i].Titulo)</b>
+                                </div>
+                                <div style="background-color:white; padding-left:1.5em;" }>
+                                    @Html.DisplayFor(x => x[i].AnoLancamento)
+                                </div>
+                                <div>
+                                    @Html.HiddenFor(x => x[i].Id)
+                                    @Html.HiddenFor(x => x[i].Titulo)
+                                    @Html.HiddenFor(x => x[i].AnoLancamento)
+                                    @Html.HiddenFor(x => x[i].Nota)
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div style="background-color:white;" }>
+                                    @Html.CheckBoxFor(x => x[i + 1].Checked, new { @onclick = "chk_Filme_OnClick();" })
+                                    <b>@Html.DisplayFor(x => x[i + 1].Titulo)</b>
+                                </div>
+                                <div style="background-color:white; padding-left:1.5em;" }>
+                                    @Html.DisplayFor(x => x[i + 1].AnoLancamento)
+                                </div>
+                                <div>
+                                    @Html.HiddenFor(x => x[i + 1].Id)
+                                    @Html.HiddenFor(x => x[i + 1].Titulo)
+                                    @Html.HiddenFor(x => x[i + 1].AnoLancamento)
+                                    @Html.HiddenFor(x => x[i + 1].Nota)
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div style="background-color:white;" }>
+                                    @Html.CheckBoxFor(x => x[i + 2].Checked, new { @onclick = "chk_Filme_OnClick();" })
+                                    <b>@Html.DisplayFor(x => x[i + 2].Titulo)</b>
+                                </div>
+                                <div style="background-color:white; padding-left:1.5em;" }>
+                                    @Html.DisplayFor(x => x[i + 2].AnoLancamento)
+                                </div>
+                                <div>
+                                    @Html.HiddenFor(x => x[i + 2].Id)
+                                    @Html.HiddenFor(x => x[i + 2].Titulo)
+                                    @Html.HiddenFor(x => x[i + 2].AnoLancamento)
+                                    @Html.HiddenFor(x => x[i + 2].Nota)
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div style="background-color:white;" }>
+                                    @Html.CheckBoxFor(x => x[i + 3].Checked, new { @onclick = "chk_Filme_OnClick();" })
+                                    <b>@Html.DisplayFor(x => x[i + 3].Titulo)</b>
+                                </div>
+                                <div style="background-color:white; padding-left:1.5em;" }>
+                                    @Html.DisplayFor(x => x[i + 3].AnoLancamento)
+                                </div>
+                                <div>
+                                    @Html.HiddenFor(x => x[i + 3].Id)
+                                    @Html.HiddenFor(x => x[i + 3].Titulo)
+                                    @Html.HiddenFor(x => x[i + 3].AnoLancamento)
+                                    @Html.HiddenFor(x => x[i + 3].Nota)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    i = i + 3;
+                }
+            }
+        </div>
+    </div>
+}

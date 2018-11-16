@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa de Filmes</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color:darkgray;">
+    <div class="container body-content">
+        <div class="jumbotron" style="background-color:dimgray;">
+            <h5 class="text-center text-muted">CAMPEONATO DE FILMES</h5>
+            <p class="text-center" style="color:white">@ViewData["Titulo"]</p>
+            <p class="text-center text-muted"><span class="glyphicon glyphicon-minus"></span></p>
+            <h5 class="text-center" style="color:white">@ViewData["Subtitulo"]</h5>
+        </div>
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
